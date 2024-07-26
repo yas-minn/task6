@@ -1,0 +1,47 @@
+.Post{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 150px;
+    background-color: white;
+    border-radius: 10px;
+    
+  }
+.CounterWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color:hsl(228, 20%, 93%);
+    border-radius: 5px;
+    width: 40px;
+    height: 80px;
+    margin: 10px;
+}
+.CounterWrapper > button {
+    border: none;
+    background: transparent;
+    color: rgb(110, 110, 194);
+}
+.CounterWrapper > span {
+    color: rgb(110, 110, 194);
+}
+.Layout{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.Info{
+  gap: 20px; 
+  display: flex;
+  align-items: center;
+  
+}
+.Deletebtns{
+    border: none;
+    background-color: transparent;
+    color: rgb(243, 88, 88);
+    border-radius: 10px;
+    cursor: pointer;
+}
