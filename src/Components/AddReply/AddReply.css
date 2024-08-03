@@ -1,14 +1,16 @@
-.NewPost{
-    margin: 10px;
+.AddNewReply{
     display: flex;
     align-items: center;
     gap: 10px;
     height: 100px;
     background-color: white;
     border-radius: 10px;
-    justify-content: space-between;
+    width: 80%;
+    justify-content: center;
+    
+    
 }
-.NewPost > button{
+.AddNewReply > button {
     border: none;
     background-color: rgb(85, 85, 170);
     height: 35px;
@@ -17,9 +19,10 @@
     margin: 20px;
     border-radius: 10px;
 }
-.Comment{
-    width: 600px;
-    height: 70px;
+.AddNewReply > input {
     margin: 10px;
-    border: rgba(218, 218, 218, 0.758) 1px solid;
+    height: 60px;
+    width: 70%;
+    border: rgba(128, 128, 128, 0.625) solid 1px;
+    border-radius: 5px;
 }

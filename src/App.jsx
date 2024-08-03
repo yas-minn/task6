@@ -8,13 +8,17 @@ import User3 from "../src/images/User3.png"
 
 
 function App() {
-  const [ArrayOfObjects, setArrayOfObject] = useState ([
+  const [ArrayOfObjects, setArrayOfObject] = useState([
     {
       likes: 0,
       content: "post11111111",
       id: 1,
       username: "me",
       photo: User1,
+      replys: [{
+        ReplyContent:"comment1",
+        rID: 1,
+      }],
     },
     {
       likes: 0,
@@ -22,6 +26,7 @@ function App() {
       id: 2,
       username: "user2",
       photo: User2,
+      replys: [],
     },
     {
       likes: 0,
@@ -29,46 +34,85 @@ function App() {
       id: 3,
       username: "user3",
       photo: User3,
+      replys: [],
     },
   ]);
-  function AddNewPostInsideArray(PostContent){
+  function AddNewPostInsideArray(PostContent) {
     let NewPostObject = {
       likes: 0,
       content: PostContent,
       id: ArrayOfObjects.length + 1,
       username: "me",
       photo: User1,
+      replys: [],
     }
     let NewArrayOfObjects = [...ArrayOfObjects, NewPostObject];
     setArrayOfObject(NewArrayOfObjects);
   }
-  function DeleteItem(PostID){
-console.log(PostID)
-const AfterDelete = ArrayOfObjects.filter((post) => {
-  return post.id != PostID;
-}  
-);
-setArrayOfObject(AfterDelete);
+  function DeleteItem(PostID) {
+    console.log(PostID)
+    const AfterDelete = ArrayOfObjects.filter((post) => {
+      return post.id != PostID;
+    }
+    );
+    setArrayOfObject(AfterDelete);
   }
+  function AddNewReply(ReplyContent, id) {
+   
+   let myOldPost = ArrayOfObjects.filter((post)=>post.id == id )[0];
+   let oldReplyCount = myOldPost.replys.length
+   let newReplyObject = {
+    ReplyContent: ReplyContent,
+    rID: oldReplyCount + 1,
+    }
+
+    let AAU = ArrayOfObjects.map((currentpost)=>{
+      if (currentpost.id == id) {
+        currentpost.replys.push(newReplyObject);
+      }
+      return currentpost;
+    });
+    setArrayOfObject(AAU);
+  }
+  function deleteComment(uniqueid, rid) {
+    let newAARDeleted = ArrayOfObjects.map((post) => {
+      if (post.id == uniqueid) {
+        let newArrayOfReplys = post.replys.filter((replys) => {
+          return replys.rID != rid;
+        });
+
+        return { ...post, replys: newArrayOfReplys };
+      }
+
+      return post;
+    });
+
+    setArrayOfObject(newAARDeleted);
+  }
+
+  
 
   return (
 
     <>
-    <div id="PostWrapper">
-      {ArrayOfObjects.map((post) => {
-        return (
-          <Post
-          uniqueid={post.id} 
-          key={post.id} 
-          likes={post.likes}
-          photo={post.photo} 
-          content={post.content}
-          username={post.username}
-          DeleteItem={DeleteItem} >
-          </Post>
-        );
-      })}
-    </div><NewPost AddNewPostInsideArray={AddNewPostInsideArray}></NewPost>
+      <div id="PostWrapper">
+        {ArrayOfObjects.map((post) => {
+          return (
+            <Post
+              uniqueid={post.id}
+              key={post.id}
+              likes={post.likes}
+              photo={post.photo}
+              content={post.content}
+              username={post.username}
+              DeleteItem={DeleteItem}
+              replys={post.replys}
+              AddNewReply={AddNewReply}
+              deleteComment={deleteComment} >
+            </Post>
+          );
+        })}
+      </div><NewPost AddNewPostInsideArray={AddNewPostInsideArray}></NewPost>
     </>
 
   );
