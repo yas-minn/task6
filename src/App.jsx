@@ -11,7 +11,7 @@ function App() {
   const [ArrayOfObjects, setArrayOfObject] = useState([]);
   useEffect(()=>{
     function CallApi() {
-      fetch("http://localhost:3000/posts")
+      fetch("http://localhost:3000/post")
       .then((response)=>{
        return response.json();
       })
