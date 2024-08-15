@@ -1,42 +1,29 @@
 import './App.css'
 import Post from './Components/Post/Post'
 import NewPost from './Components/NewPost/NewPost'
-import { useState } from 'react';
-import User1 from "../src/images/User1.png"
-import User2 from "../src/images/User2.png"
-import User3 from "../src/images/User3.png"
+import { useEffect, useState } from 'react';
+import User1 from "/images/User1.png"
+import User2 from "/images/User2.png"
+import User3 from "/images/User3.png"
 
 
 function App() {
-  const [ArrayOfObjects, setArrayOfObject] = useState([
-    {
-      likes: 0,
-      content: "post11111111",
-      id: 1,
-      username: "me",
-      photo: User1,
-      replys: [{
-        ReplyContent:"comment1",
-        rID: 1,
-      }],
-    },
-    {
-      likes: 0,
-      content: "post2222222",
-      id: 2,
-      username: "user2",
-      photo: User2,
-      replys: [],
-    },
-    {
-      likes: 0,
-      content: "post3333333",
-      id: 3,
-      username: "user3",
-      photo: User3,
-      replys: [],
-    },
-  ]);
+  const [ArrayOfObjects, setArrayOfObject] = useState([]);
+  useEffect(()=>{
+    function CallApi() {
+      fetch("http://localhost:3000/posts")
+      .then((response)=>{
+       return response.json();
+      })
+      .then((finalResult)=>{
+        setArrayOfObject(finalResult);
+
+      });
+    }
+    CallApi();
+  },[]);
+
+
   function AddNewPostInsideArray(PostContent) {
     let NewPostObject = {
       likes: 0,
@@ -93,12 +80,12 @@ function App() {
   
 
   return (
-
-    <>
+  
+   <>
       <div id="PostWrapper">
         {ArrayOfObjects.map((post) => {
-          return (
-            <Post
+          return ( 
+           <Post
               uniqueid={post.id}
               key={post.id}
               likes={post.likes}
@@ -113,7 +100,7 @@ function App() {
           );
         })}
       </div><NewPost AddNewPostInsideArray={AddNewPostInsideArray}></NewPost>
-    </>
+   </>
 
   );
 }

@@ -1,0 +1,29 @@
+{"posts":[
+    {
+        "likes": 0,
+        "content": "post11111111",
+        "id": 1,
+        "username": "me",
+        "photo": "/images/User1.png",
+        "replys": [{
+          "ReplyContent":"comment1",
+          "rID": 1
+        }]
+      },
+      {
+        "likes": 0,
+        "content": "post2222222",
+        "id": 2,
+        "username": "user2",
+        "photo": "/images/User2.png",
+        "replys": []
+      },
+      {
+        "likes": 0,
+        "content": "post3333333",
+        "id": 3,
+        "username": "user3",
+        "photo": "/images/User3.png",
+        "replys": []
+      }
+]}
