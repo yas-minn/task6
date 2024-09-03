@@ -2,10 +2,17 @@ import { useState } from "react";
 import "./Post.css";
 import AddReply from "../AddReply/AddReply";
 import ReplysWrapper from "../ReplysWrapper/ReplysWrapper"
+import useStore from "../../store/project";
+
+
 
 function Post(props) {
     const [showReplyDiv,setShowReplyDiv] = useState(false);
-    const [count, setcount] = useState(props.likes);
+    
+
+    
+    const {count, plus, minus} = useStore()
+    /*const [count, setcount] = useState(props.likes);
     function Plus() {
         const newValue = count + 1;
         setcount(newValue);
@@ -13,7 +20,10 @@ function Post(props) {
     function Minus() {
         const newValue = count - 1;
         setcount(newValue);
-    }
+    }*/
+
+
+
     function handleDelete(event) {
     props.DeleteItem(event.target.getAttribute('uniqueid'))
     }
@@ -30,9 +40,9 @@ setShowReplyDiv (finalResult);
         <div className="PostWrap">
               <div className="Post">
             <div className="CounterWrapper">
-                <button onClick={Plus}>+</button>
+                <button onClick={plus}>+</button>
                 <span>{count}</span>
-                <button onClick={Minus}>-</button>
+                <button onClick={minus}>-</button>
             </div>
             <div className="Layout">
                 <div className="Info">

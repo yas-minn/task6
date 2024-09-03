@@ -2,6 +2,7 @@ import './App.css'
 import Post from './Components/Post/Post'
 import NewPost from './Components/NewPost/NewPost'
 import { useEffect, useState } from 'react';
+import useStore from './store/project';
 import User1 from "/images/User1.png"
 import User2 from "/images/User2.png"
 import User3 from "/images/User3.png"
@@ -26,7 +27,7 @@ function App() {
 
   function AddNewPostInsideArray(PostContent) {
     let NewPostObject = {
-      likes: 0,
+      //likes: 0,
       content: PostContent,
       id: ArrayOfObjects.length + 1,
       username: "me",
@@ -88,7 +89,7 @@ function App() {
            <Post
               uniqueid={post.id}
               key={post.id}
-              likes={post.likes}
+            //likes={post.likes}
               photo={post.photo}
               content={post.content}
               username={post.username}
